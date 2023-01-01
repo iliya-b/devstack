@@ -716,10 +716,10 @@ function git_timed {
 
         count=$(($count + 1))
         warn $LINENO "timeout ${count} for git call: [git $@]"
-        if [ $count -eq 3 ]; then
-            die $LINENO "Maximum of 3 git retries reached"
+        if [ $count -eq 8 ]; then
+            die $LINENO "Maximum of 8 git retries reached"
         fi
-        sleep 5
+        sleep $((RANDOM % 8))
     done
     time_stop "git_timed"
 }
